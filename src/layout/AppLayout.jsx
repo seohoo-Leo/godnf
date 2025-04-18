@@ -3,8 +3,10 @@ import { useServers } from '../hooks/useServers'
 
 const AppLayout = () => {
 
-    const {data} = useServers();
-    console.log(data);
+    const {data,isLoading} = useServers();  
+    console.log(data.serverId);
+
+    if(isLoading) return <p>서버 목록 불러오는 중 .....</p>
     
   return (
     <div>
