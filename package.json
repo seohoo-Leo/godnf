@@ -10,6 +10,10 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.8.4",
     "bootstrap": "^5.3.5",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "http-proxy-middleware": "^3.0.5",
+    "puppeteer": "^24.6.1",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.1.0",
@@ -40,5 +44,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://api.neople.co.kr"
 }

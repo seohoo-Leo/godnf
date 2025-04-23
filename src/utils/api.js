@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_KEY=process.env.REACT_APP_API_KEY;
+const DNF_API_KEY = process.env.DNF_API_KEY;
 
 export const dnfApi= axios.create({
-    baseURL:'https://api.neople.co.kr/df',
-    params:{
-        apikey: API_KEY
+    
+    params: {
+      apikey: DNF_API_KEY,
     }
 })

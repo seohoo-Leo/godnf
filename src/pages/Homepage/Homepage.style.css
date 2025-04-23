@@ -1,0 +1,15 @@
+
+.nav-section {
+   height: 40vh ;
+   text-align: center;
+   
+}
+
+.nav-section:hover {
+    cursor: pointer
+}
+
+.nav-section img{
+   height: 100%;
+   width: 500px
+}
