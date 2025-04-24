@@ -13,3 +13,8 @@
    height: 100%;
    width: 500px
 }
+
+.container {
+   min-width: 1200px;
+   overflow-x: auto;
+ }

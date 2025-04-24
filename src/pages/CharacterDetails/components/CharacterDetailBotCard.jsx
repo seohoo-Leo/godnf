@@ -7,7 +7,7 @@ const CharacterDetailBotCard = (EItem) => {
     <Container>
         <div className="character-info-bot">
             <Row className='menubar'>
-                <Col>장착장비</Col>
+                <Col xs={0}>장착장비</Col>
                 <Col>스탯</Col>
                 <Col>세부스탯</Col>
                 <Col>아바타&크리쳐</Col>

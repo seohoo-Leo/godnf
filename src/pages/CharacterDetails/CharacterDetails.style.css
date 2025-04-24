@@ -124,13 +124,13 @@
 }
 
 /* 아이템 레어리티 등급 */
-.커먼{color:#FFFFFF}
-.언커먼{color:#68D5ED}
-.레어{color:#B36BFF}
-.유니크{color:#FF00FF}
-.에픽{color : #FFB400}
-.클로니클{color: #FF6666}
-.레전더리{color: #FF7800}
+.커먼{color:#FFFFFF; font-weight: 500;}
+.언커먼{color:#68D5ED; font-weight: 500; }
+.레어{color:#B36BFF; font-weight: 500;}
+.유니크{color:#FF00FF; font-weight: 500;}
+.에픽{color : #FFB400; font-weight: 500;}
+.클로니클{color: #FF6666; font-weight: 500;}
+.레전더리{color: #FF7800; font-weight: 500;}
 /* .신화{color:} */
 .태초{
     background: linear-gradient(to  top, #56cfff, hsl(131, 100%, 85%));
@@ -138,3 +138,31 @@
     -webkit-background-clip: text;   
     font-weight: 700;
 }
+
+.enchant-ul{
+    list-style: none;
+    display: flex;
+    gap:12px;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    color : gray;
+    font-size:small;
+    font-weight: 300;
+    
+}
+
+.itemName_tune{
+    list-style: none;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-left: 0 !important;
+}
+
+.itemName_tune .li{
+    
+    font-weight: 700;
+}
+
+
