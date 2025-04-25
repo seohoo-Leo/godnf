@@ -133,6 +133,22 @@ app.get('/api/EItem', async (req, res) => {
   }
 });
 
+//장착장비 상세정보
+app.get('/api/itemId', async (req, res) => {
+  try {
+    const itemId = req.query.itemId
+
+    const { data } = await axios.get(
+      `https://api.neople.co.kr/df/items/${itemId}?apikey=${DNF_API_KEY}`
+    );
+    res.json(data);
+    
+  } catch (error) {
+    console.error('DNF API 요청 실패:', error);
+    res.status(500).json({ error: 'DNF API 호출 실패' });
+  }
+});
+
 
   // 페이지 접속 (60초까지 기다림)
   await page.goto('https://dfmax.xyz', {

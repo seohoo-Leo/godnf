@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import { useItemId } from '../../../hooks/useItemId';
 
 const ItemInfo = (EItem) => {
+
     const eItem = EItem.EItem.EItem;
     const simplifyEnchantName= (name) =>{
         //그룹화 매핑
@@ -31,6 +33,44 @@ const ItemInfo = (EItem) => {
          return enchantNameMap[name] || name;
         }
 
+        const ImageRepeater = ( item, count)=>{
+            return(
+                <div>
+                    {Array.from({length:count}).map((_,index)=>(
+                        <img src={`/img/${item}.png`}
+                        style={{width:"30px",height:"30px" }}/>
+                    ))}
+                </div>
+            )
+        }
+
+        
+            const equipments= eItem 
+            const setPointMap = {};
+
+            equipments?.forEach( (equip) => {
+                const setName = equip?.setItemName;
+                const point =  (equip.tune)?.map((a)=> a.setPoint)[0] || 0;
+                const setName2 = equip?.upgradeInfo?.setItemName  
+                const point2 = equip?.upgradeInfo?.setPoint
+                   
+                if(setName){
+                    setPointMap[setName] = (setPointMap[setName] || 0) +point;
+                }
+                if(setName2){
+                    setPointMap[setName2] = (setPointMap[setName] || 0) +point2;
+                }
+
+               
+            });
+
+            const pointSum = Object.entries(setPointMap)
+            const maxItem = pointSum.reduce((maxSoFar, current)=>{
+                return (current[1] > maxSoFar[1])? current : maxSoFar;
+            })   
+            
+          console.log(equipments);
+          
 
             
   return (
@@ -39,8 +79,10 @@ const ItemInfo = (EItem) => {
         <Row >
             <Col  xs={2} sm={2} lg={2} xl={2}  className='item-type'>세트</Col>
             <Col  xs={2} sm={2} lg={2} xl={2} >세트이미지</Col>
-            <Col  xs={4} sm={4} lg={4} xl={4} >세트이름</Col>
-            <Col  xs={2} sm={2} lg={2} xl={2} >세트포인트</Col>
+            <Col  xs={4} sm={4} lg={4} xl={4} >
+                {maxItem[0]}
+            </Col>
+            <Col  xs={2} sm={2} lg={2} xl={2} >세트포인트 :{maxItem[1]}</Col>
         </Row>
         { eItem?.map((items)=> 
             <Row>
@@ -66,13 +108,15 @@ const ItemInfo = (EItem) => {
                     )].map(text =>(
                         <li>{text}</li>))}
                     </ul>
-                     {/* {simplifyEnchantName items?.enchant?.status?.map((item)=> ( item.map((s)=>s.name +`+`+s.value))))}
-                    {/* {simplifyEnchantName(itecms?.enchant?.status)?} */}
-                    {/* {items?.enchant?.status[0].name} */} 
+
                 </Col>
                 <Col  xs={2} sm={2} lg={2} xl={2} className={`${items?.upgradeInfo?.itemRarity}`}>
                         {items?.upgradeInfo?.itemName === undefined ? "": `${items?.upgradeInfo?.itemName}`.substr(0,2)}
-                        {console.log(items)}
+                        { (items?.fusionOption?.options?.map(f=> f?.engrave)[0]?.color) === "gold"? ImageRepeater((items?.fusionOption?.options?.map(f=> f?.engrave)[0]?.color), (items?.fusionOption?.options?.map(f=> f?.engrave)[0]?.value)) :""}
+                </Col>
+                <Col xs={1} sm={1} lg={1} xl={1} style={{fontSize:"large", fontWeight:"bold"}}>
+                   +{items?.reinforce} 
+                    
                         
                 </Col>
             </Row>     
