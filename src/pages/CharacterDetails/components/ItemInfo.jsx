@@ -36,7 +36,7 @@ const ItemInfo = (EItem) => {
         const ImageRepeater = ( item, count)=>{
             return(
                 <div>
-                    {Array.from({length:count}).map((_,index)=>(
+                    {Array.from({length:count}).map((_)=>(
                         <img src={`/img/${item}.png`}
                         style={{width:"30px",height:"30px" }}/>
                     ))}
@@ -53,36 +53,98 @@ const ItemInfo = (EItem) => {
                 const point =  (equip.tune)?.map((a)=> a.setPoint)[0] || 0;
                 const setName2 = equip?.upgradeInfo?.setItemName  
                 const point2 = equip?.upgradeInfo?.setPoint
-                   
-                if(setName){
+                const setName3 = equip?.itemName 
+                
+                
+                if(setName ){
                     setPointMap[setName] = (setPointMap[setName] || 0) +point;
                 }
                 if(setName2){
-                    setPointMap[setName2] = (setPointMap[setName] || 0) +point2;
+                    setPointMap[setName2] = (setPointMap[setName2] || 0) +point2;
+                }
+                if(setName3.startsWith("고유") || setName3.startsWith("개시")){
+                    setPointMap["공통"] = (setPointMap["공통"] || 0 ) +point
                 }
 
                
             });
 
             const pointSum = Object.entries(setPointMap)
-            const maxItem = pointSum.reduce((maxSoFar, current)=>{
+            const maxItem = pointSum.length > 0?pointSum.reduce((maxSoFar, current)=>{
                 return (current[1] > maxSoFar[1])? current : maxSoFar;
-            })   
-            
-          console.log(equipments);
+            }) : 0;   
+            console.log(setPointMap);
+             
           
-
+          
+          //세트 대표이미지 매치
+          const setItemImgMatch = (setName) =>{
             
+            const setImgMatch = {
+                "칠흑의 정화 세트" : 2,
+                "용투장의 난 세트" : 3,
+                "에테리얼 오브 아츠 세트" : 4,
+                "한계를 넘어선 에너지 세트" : 5,
+                "압도적인 자연 세트" : 6,
+                "고대 전장의 발키리 세트" : 7,
+                "소울 페어리 세트" : 8,
+                "그림자에 숨은 죽음 세트" : 9,
+                "세렌디피티 세트" : 10,
+                "마력의 영역 세트" : 11,
+                "무리 사냥의 길잡이 세트" :12,
+                "영원히 이어지는 황금향 세트" : 13
+            }
+            return setImgMatch[setName] || 0
+        }
+
+            //세트포인트별 등급
+            const gradeRanges = [
+                { min: 0, max: 1200, Grade: "레어", GradeNum: "" },
+                { min: 1199, max: 1285, Grade: "유니크", GradeNum: "\u2160" },
+                { min: 1284, max: 1370, Grade: "레어", GradeNum: "\u2160" },
+                { min: 1369, max: 1455, Grade: "레어", GradeNum: "\u2160" },
+                { min: 1454, max: 1540, Grade: "레어", GradeNum: "\u2160" },
+                { min: 1539, max: 1650, Grade: "유니크", GradeNum: "\u2164" },
+                { min: 1649, max: 1735, Grade: "레전더리", GradeNum: "\u2160" },
+                { min: 1734, max: 1820, Grade: "레전더리", GradeNum: "\u2161" },
+                { min: 1819, max: 1905, Grade: "레전더리", GradeNum: "\u2162" },
+                { min: 1904, max: 1990, Grade: "레전더리", GradeNum: "\u2163" },
+                { min: 1989, max: 2100, Grade: "레전더리", GradeNum: "\u2164" },
+                { min: 2099, max: 2185, Grade: "에픽", GradeNum: "\u2160" },
+                { min: 2184, max: 2270, Grade: "에픽", GradeNum: "\u2161" },
+                { min: 2269, max: 2355, Grade: "에픽", GradeNum: "\u2162" },
+                { min: 2354, max: 2440, Grade: "에픽", GradeNum: "\u2163" },
+                { min: 2439, max: 2550, Grade: "에픽", GradeNum: "\u2164" },
+                { min: 2549, max: Infinity, Grade: "태초", GradeNum: "" },
+              ];
+
+              const getPointGrade= (point)=>{
+                 const result = gradeRanges.find(range => point > range.min && point <range.max )
+                 return result || { Grade: "알 수 없음", GradeNum: "" } ;
+              }
+           
+              console.log(setPointMap);
+              
+
   return (
 
     <Row className='setItem'>
-        <Row >
+        <Row style={{backgroundColor:"#e9edf0"}} >
             <Col  xs={2} sm={2} lg={2} xl={2}  className='item-type'>세트</Col>
-            <Col  xs={2} sm={2} lg={2} xl={2} >세트이미지</Col>
-            <Col  xs={4} sm={4} lg={4} xl={4} >
-                {maxItem[0]}
+            <Col  xs={2} sm={2} lg={2} xl={2} >
+                <img src={`/img/${setItemImgMatch(maxItem[0])}.png`} 
+                    style={{width:"80px", height:"80px", padding:"5px"}}
+                />
             </Col>
-            <Col  xs={2} sm={2} lg={2} xl={2} >세트포인트 :{maxItem[1]}</Col>
+            <Col  xs={4} sm={4} lg={4} xl={4} className={setPointMap.length < 1 ? getPointGrade(maxItem[1]+setPointMap["공통"])["Grade"]:getPointGrade(maxItem[1])["Grade"]}>
+                {maxItem[0]}
+                {setPointMap.length < 1 ? getPointGrade(maxItem[1]+setPointMap["공통"])["GradeNum"] :getPointGrade(maxItem[1])["GradeNum"] }
+            </Col>
+            <Col  xs={2} sm={2} lg={2} xl={2} style={{color:"brown"}} >
+            세트포인트 <span style={{fontSize:"x-large"}}>
+                 {setPointMap.length <1 ? maxItem[1]+setPointMap["공통"] : maxItem[1]}
+                </span>
+            </Col>
         </Row>
         { eItem?.map((items)=> 
             <Row>

@@ -3,8 +3,8 @@ import { Container,Row,Col } from 'react-bootstrap'
 
 const CharacterDetailTopCard = ({data,server}) => {
   return (
-    <Container >
-    <div className="character-info" >
+    <Container style={{height:"auto"}} >
+    <div className="character-info"  style={{marginBottom:"0px"}}>
       <Row>
         <Col xs={4} sm={4} lg={4} xl={4} className="character-imgcard">
             <div className="character-imgcard-info">{data?.jobGrowName}</div>

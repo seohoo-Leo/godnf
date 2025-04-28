@@ -22,6 +22,7 @@ const CharacterDetails = () => {
     <Container>
         <CharacterDetailTopCard data={data} server={server}/>
         <CharacterDetailBotCard EItem={EItem}/>
+
     </Container>
   )
 }
