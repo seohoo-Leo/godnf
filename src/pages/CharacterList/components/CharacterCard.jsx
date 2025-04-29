@@ -12,10 +12,10 @@ const CharacterCard = ({data}) => {
       
   
     return (
-    <Container >
+    <Container className ="characterCardListPage">
           <Row className='character-card' >
             {data?.map((result,index)=>
-            <Col xs={12} sm={6} md={4} lg={3} onClick={()=>goCharacterDetails(result.serverId,result.characterId)} >
+            <Col xl={4} onClick={()=>goCharacterDetails(result.serverId,result.characterId)} style={{ width:"300px"}} >
                 <p>
                     {result.serverId==="cain" ? "카인" : "" }
                     {result.serverId==="diregie" ? "디레지에" : ""}

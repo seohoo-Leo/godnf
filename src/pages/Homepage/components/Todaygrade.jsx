@@ -8,11 +8,11 @@ const Todaygrade = () => {
   return (
     <Container className="today-grade">
     <Row >
-      <Col className='todaygrade' sm={4} >
+      <Col xs={4} className='todaygrade'>
         <DayGrade/>
       </Col>
-      <Col sm={8}>
-        <TopdayUpDate/>
+      <Col xs={8} className='todaygrade'>
+        <TopdayUpDate />
       </Col>
     </Row>
     </Container>

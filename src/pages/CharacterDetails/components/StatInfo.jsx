@@ -38,7 +38,7 @@ const StatInfo = () => {
   
 
   return (
-    <Row>
+    <Row style={{margin:"2%"}}>
         <Col>
              {statusNeed?.map((s, index)=> 
               statusMatch(s)? 

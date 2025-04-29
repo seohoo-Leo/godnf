@@ -37,9 +37,7 @@ const CharacterList = ({selectedName,selectedServer,selectedServerId,setSelected
               selectedServerId={selectedServerId} setSelectedServerId={setSelectedServerId}
               selectedName={selectedName} setSelectedName={setSelectedName}
             /> 
-          <hr/>
-          <CharacterCard data={data}/>
-         
+        <CharacterCard data={data}/>
         
         </Container>     
   )

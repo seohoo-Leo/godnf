@@ -2,6 +2,7 @@ import React from 'react'
 import { useAvata } from '../../../hooks/useAvata'
 import { useSearchParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap'
+import { usePet } from '../../../hooks/usePet';
 
 const Avata = () => {
 
@@ -9,6 +10,7 @@ const Avata = () => {
     const server = query.get('server');
     const Name = query.get('name')
     const{data} = useAvata(server, Name)
+     const {data:petData} =usePet(server, Name)
 
     const avatInfo = (data?.map((avata) =>{ 
          return { 
@@ -17,11 +19,11 @@ const Avata = () => {
             clone : avata?.clone,
             cloneImg : avata?.cloneImage}}))
 
-    console.log(avatInfo?.cloneImg);
+    console.log(petData);
     
 
   return (
-    <Col>
+     <Row style={{margin:"2%"}}>
         {avatInfo?.map(avata=>
             <Row className="avatar">
               <Col className="slotName" style={{ flex: "0 0 150px" , height:"40px"}}>{avata.avata.slotName}</Col>
@@ -35,7 +37,7 @@ const Avata = () => {
               <img src={avata.cloneImg} style={{height:"35px"}}/>
               </Col>)}
               
-              <Col  style={{ flex: "0 0 350px",display:"flex",flexDirection:"column", justifyContent:"center", alignItems:"center"  }}>  
+              <Col  style={{ flex: "0 0 340px",display:"flex",flexDirection:"column", justifyContent:"center", alignItems:"center"  }}>  
               { avata.clone["itemId"] === null? <Col>{avata.avata.itemName}</Col>:<Col >{avata.clone["itemName"]}</Col> }
               {<Col style={{fontSize:"small"}}> {avata?.avata.optionAbility}</Col>}
               </Col>
@@ -47,13 +49,32 @@ const Avata = () => {
                 </Col>
           </Row>
            )}
-           <hr/>
+           
            <Row className='avatar'>
-
-
+              <Col  className="slotName" style={{ flex: "0 0 150px" , height:"40px"}}>크리쳐</Col>
+              {petData &&(
+                <Col style={{ flex: "0 0 100px"  ,display:"flex", justifyContent:"flex-end"}}>
+                <img src={petData?.CreatureImg} style={{height:"35px" , margin:"3px"}}/> 
+                </Col>
+                )}
+              <Col style={{ flex: "0 0 60px" , display:"flex",margin :"0px" , padding:"0px"}}>
+                    {petData?.ArtifactImg?.map(art => { console.log(art) ;return(<Col style={{margin:"2px"}}><img style={{width:"25px", height:"25px"}} src={art} alt={"art"}/></Col>)})}
+  
+                  </Col>
+                {petData?.Creature?.itemName && (
+                  <Col  style={{ flex: "0 0 340px",display:"flex",flexDirection:"column", justifyContent:"center", alignItems:"center"  }}>  
+                   <Col>{petData.Creature.itemName}</Col>
+                   </Col>
+                )}
+                <Col style={{marginRight: "30px"}}>
+                 {petData?.Creature?.artifact?.map( art => {
+                      return <Row className= {`${art?.itemRarity}`}
+                                 style={{fontSize:"small" ,justifyContent:"flex-end", display:"flex"}}> {art?.itemName}</Row>}   
+                    )} 
+               </Col>
            </Row>
-    </Col>
-  )
+           </Row>
+    )
 }
 
 export default Avata

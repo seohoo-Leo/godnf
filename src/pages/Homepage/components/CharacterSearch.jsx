@@ -74,11 +74,11 @@ const CharacterSearch = ({selectedName,selectedServer,selectedServerId,setSelect
   }
 
   return (
-    <div>
+    <div  className="CSHTOP" style={{display:'flex', justifyContent:"center"}}>
      <Form>
-      <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword" style={{ alignItems: "center", justifyContent:"center"}}>
-        <Form.Label column sm="2">
-              <Dropdown style={{display:"flex"}}>
+      <Form.Group as={Row}  controlId="formPlaintextPassword" style={{alignItems: "center", justifyContent:"center"}}>
+        <Form.Label column >
+              <Dropdown style={{display:"flex",justifyContent:"flex-end"}}>
           <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{width : '200px'}}>
             {selectedServer}
           </Dropdown.Toggle>
@@ -92,16 +92,16 @@ const CharacterSearch = ({selectedName,selectedServer,selectedServerId,setSelect
           </Dropdown.Menu>
           </Dropdown> 
         </Form.Label>
-        <Col sm="4">
+        <Col >
           <Form.Control 
             type="text" 
             placeholder="캐릭터명"  
-            style={{ alignItems: "center"}} 
+            style={{ alignItems: "center", width:"300px"}} 
             onChange={(event)=>inputName(event)}
             onKeyPress={(event) => searchEnter(event)}
             />
         </Col>
-        <Col sm="1">
+        <Col>
         <Button 
             variant="outline-primary"
             disabled={isLoading}

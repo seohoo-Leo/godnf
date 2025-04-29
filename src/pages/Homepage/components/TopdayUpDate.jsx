@@ -3,7 +3,7 @@ import { Accordion } from 'react-bootstrap'
 
 const TopdayUpDate = () => {
   return (
-    <div className="p-4 border rounded shadow w-fit">
+    <div className="p-4 border rounded shadow " style={{minWidth:"100%"}}> 
       업데이트 내역 
       <hr/>
       <Accordion>

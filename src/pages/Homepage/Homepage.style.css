@@ -1,8 +1,10 @@
 
 .nav-section {
    height: 40vh ;
-   text-align: center;
-   
+   display: flex;
+   justify-content: center;
+   min-width: 720px;
+   overflow-x: hidden;
 }
 
 .nav-section:hover {
@@ -14,7 +16,28 @@
    width: 500px
 }
 
-.container {
-   min-width: 1200px;
-   overflow-x: auto;
+.homepage.Container{
+   min-width: 1012px;
+   overflow-x: hidden;
+   justify-content: center;
+   display: flex;
  }
+
+ .CSHTOP{
+   min-width: 720px;
+   overflow-x: hidden;
+   justify-content: center;
+   display: flex;
+   overflow: visible;
+ }
+
+ .homepage{
+   min-width: 720px;
+   overflow-x: hidden;
+ }
+
+ .homepage .container{
+   min-width: 720px;
+   overflow-x: hidden;
+ }
+

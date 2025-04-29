@@ -18,10 +18,10 @@ const DayGrade = () => {
     }, []);
   
     return (
-      <div className="p-4 border rounded shadow w-fit" style={{ height: "267px"  ,textAlign :'center'}}>
+      <div className="p-4 border rounded shadow w-fit" style={{ height: "267px"  ,textAlign :'center', minWidth:"100%"}}>
         <h6 >오늘의 아이템 등급</h6>
         <hr/>
-        <div style={{ padding:"40px", fontSize:"40px", color:"red"}}>{grade}</div>
+        <div style={{ padding:"20px", fontSize:"40px", color:"red"}}>{grade}</div>
       </div>
     );
   };

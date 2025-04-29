@@ -168,8 +168,12 @@
 .menubar .col{
     border-right: 0;
     border-left: 0;
+    padding: 2%;
+}
+
+.menubar.row{
+    padding-bottom:0;
     border-bottom: 0.5px solid rgb(221, 221, 221);
-    padding-bottom: 3%;
 }
 
 .status.row {
@@ -194,15 +198,14 @@
     font-size:large;
 }
 
-.avatar{
+.avatar.row{
     justify-content: center;
     text-align: center;
     align-items: center;
-    justify-content: center;
     border-radius: 4px;
     border: 0.5px solid rgba(0, 0, 0, 0.2);
     margin: 4px;
-    height: 80px;
+    padding: 4px;
 }
 .slotName.col{
     border-right: 0.5px solid rgba(0, 0, 0, 0.2);
@@ -213,5 +216,39 @@
 }
 
 
+.talisman-ul{
+    list-style: none;
+    display: flex;
+    padding-top: 2% ;
+    padding-left:0 ;
+    justify-content: center;
+}
 
+.talisman-ul li{
+    background-color: red;
+    margin: 3px;
+ 
+}
 
+.talisman-card{
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    border-radius:  4px;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    height: auto;
+    margin: 2%;
+}
+
+.talisman-name{
+    text-align: center;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 2%;
+}
+
+.talisman-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20%;
+}

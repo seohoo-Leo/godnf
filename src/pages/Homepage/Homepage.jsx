@@ -20,13 +20,17 @@ const Homepage = ({selectedName,selectedServer,selectedServerId,setSelectedName,
         <div className="nav-section" onClick={gohome} >
           <img src='./img/logoDNF.png' />
         </div>
+        <div className="search-section">
             <CharacterSearch 
               selectedServer={selectedServer} setSelectedServer={setSelectedServer}
               selectedServerId={selectedServerId} setSelectedServerId={setSelectedServerId}
               selectedName={selectedName} setSelectedName={setSelectedName}
             />
-          <hr/>
+          </div>
+          <hr style={{minWidth:"720px"}}/>
+          <div>
           <Todaygrade />
+          </div>
         </Container>
     </div>
     
