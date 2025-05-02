@@ -28,8 +28,8 @@ const AppHeader = () => {
         </div>
         </Navbar.Brand>
       <Nav className="me-auto">
-        <Nav.Link href="">캐릭터 검색</Nav.Link>
-        <Nav.Link href="#features">아이템 검색</Nav.Link>
+        <Nav.Link href="/">캐릭터 검색</Nav.Link>
+        <Nav.Link href="/auction">아이템 검색</Nav.Link>
       </Nav>
     </Container>
     </Navbar>

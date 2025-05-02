@@ -12,25 +12,36 @@ const Talisman = () => {
     
 
     const{data} = useTalisman(server,Name);
-    const jobId = data?.jobId
-    const{data:skillInfo } =useSkill(server,Name,jobId);
-    
+  
     const talisman = data?.talismans|| [];
-    console.log(jobId );
-    console.log("스킬정보", skillInfo);
+    
+    const runesType = (runetype) => {
+
+      let runeColor = ""
+
+      if(runetype.includes("테라코타")){return runeColor="purple" }
+      else if(runetype.includes("서클 메이지")){return runeColor= "green"}
+      else if(runetype.includes("수호자들")){return runeColor="blue"}
+      else if(runetype.includes("고대 도서관")){return runeColor="yellow"}
+      else if(runetype.includes("세컨드 팩트")){return runeColor="red"}
+
+      return runeColor
+    }
     
   return (
     <Row style={{margin:"2%"}}> 
      {talisman?.map(items =>
         <Col className='talisman-card'>
-           <Col className="talisman-name">탈리스만 이름</Col>
+           <Col className="talisman-name">{items?.talisman.itemName}</Col>
             <Col className="talisman-img"> 
-               <img src={`https://bbscdan.df.nexon.com`}/> </Col>
+               <img src={`https://img-api.neople.co.kr/df/items/${items?.talisman.itemId}`} 
+                    style={{width:"80px", height:"80px"}}/> </Col>
             <Col>
             <ul className='talisman-ul'>
-                <li>룬1</li>
-                <li>룬2</li>
-                <li>룬3</li>
+              {console.log(items.runes[0])}
+              {items?.runes?.map(runes => {return (
+                                      <li style={{color:`${runesType(runes?.itemName)}` }}>{runes?.itemName}</li>)}) 
+                       }
             </ul>
             </Col>
         </Col>)

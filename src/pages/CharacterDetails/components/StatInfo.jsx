@@ -15,9 +15,8 @@ const StatInfo = () => {
     data?.status?.map(status=> 
         status.length <  statusNeed.push(status));
 
-    console.log(163 , 106.25+50.9);
     
-    console.log(data)
+    console.log("캐릭터 스탯:", data)
         
     const statusMatch =(status) =>{
         const needStatusName =["물리 방어율","힘","체력","물리 공격","물리 크리티컬","독립 공격","공격 속도","화속성 강화","명속성 강화"]

@@ -5,6 +5,7 @@ import StatInfo from './StatInfo'
 import Avata from './Avata'
 import Buff from './Buff'
 import Talisman from './Talisman'
+import DetailStat from './DetailStat'
 
 const CharacterDetailBotCard = (EItem) => {
 
@@ -57,7 +58,7 @@ const CharacterDetailBotCard = (EItem) => {
       } else if (activeComponent === 'buff'&& buffRef.current) {
         currentHeight = buffRef.current.offsetHeight; 
       }else if (activeComponent === 'talisman'&& talismanRef.current) {
-        currentHeight =  talismanRef.current.offsetHeight;
+        currentHeight = talismanRef.current.offsetHeight;
       }
       setHeight(currentHeight);
     })
@@ -114,8 +115,6 @@ const CharacterDetailBotCard = (EItem) => {
                         fontWeight: activeComponent === 'talisman' ? 'bold' : '' ,
                         borderBottom: activeComponent === 'talisman' ? '2px solid black': ""
                           }}>탈리스만</Col>
-                <Col>딜표</Col>
-                <Col>스킬정보</Col>
             </Row>
             <div 
           ref={containerRef}
@@ -146,6 +145,18 @@ const CharacterDetailBotCard = (EItem) => {
             }}
           >
             <StatInfo/>
+          </div>
+
+          <div
+            ref={detailStatRef}
+            style={{
+              ...CommonStyle,
+              opacity: activeComponent === 'detailStat' ? 1 : 0,
+              transform: activeComponent === 'detailStat' ? 'scale(1)' : 'scale(0.95)',
+              pointerEvents: activeComponent === 'detailStat' ? 'auto' : 'none',
+            }}
+          >
+            <DetailStat/>
           </div>
     
           <div

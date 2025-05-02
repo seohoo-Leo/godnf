@@ -58,6 +58,7 @@ app.get("/api/characters/details", async (req, res) => {
   }
 });
 
+
 //캐릭터
 app.get("/api/characters", async (req, res) => {
   
@@ -70,23 +71,22 @@ app.get("/api/characters", async (req, res) => {
 
     );
     const characters = response.data.rows || []
- 
+
     const detailedCharacters= await Promise.all(
       characters.map(async(char)=>{
-
         return{
           characterId : char.characterId,
           characterName: char.characterName,
           level: char.level,
           jobGrowName: char.jobGrowName,
-          serverId,
+          serverId: char.serverId,
           fame : char.fame,
-          characterImage: ` https://img-api.neople.co.kr/df/servers/${serverId}/characters/${char.characterId}?zoom=3`
+          characterImage: ` https://img-api.neople.co.kr/df/servers/${char.serverId}/characters/${char.characterId}?zoom=3`
         };
       })
     );
     
-    console.log(detailedCharacters);
+    console.log(advInfo );
     
     res.json(detailedCharacters);
   } catch (err) {
@@ -255,6 +255,25 @@ app.get("/api/avata", async (req, res) => {
 
     const {data} = await axios.get(
       `https://api.neople.co.kr/df/servers/${serverId}/characters/${characterId}/equip/talisman?apikey=${DNF_API_KEY}`
+    );
+
+    res.json(data);
+    
+  } catch (error) {
+    console.error('DNF API 요청 실패:', error);
+    res.status(500).json({ error: 'DNF API 호출 실패' });
+  } 
+});
+
+//타임라인 조회
+app.get('/api/timeline', async (req, res) => {
+
+  try {
+    const serverId = req.query.serverId 
+    const characterId = req.query.characterId 
+
+    const {data} = await axios.get(
+      `https://api.neople.co.kr/df/servers/${serverId}/characters/${characterId}/timeline?apikey=${DNF_API_KEY}`
     );
 
     res.json(data);

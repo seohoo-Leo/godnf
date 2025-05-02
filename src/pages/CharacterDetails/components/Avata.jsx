@@ -19,7 +19,7 @@ const Avata = () => {
             clone : avata?.clone,
             cloneImg : avata?.cloneImage}}))
 
-    console.log(petData);
+            console.log("아바타 인포 : " , avatInfo);
     
 
   return (
@@ -38,7 +38,7 @@ const Avata = () => {
               </Col>)}
               
               <Col  style={{ flex: "0 0 340px",display:"flex",flexDirection:"column", justifyContent:"center", alignItems:"center"  }}>  
-              { avata.clone["itemId"] === null? <Col>{avata.avata.itemName}</Col>:<Col >{avata.clone["itemName"]}</Col> }
+              { avata.clone["itemId"] === null? <Col >{avata.avata.itemName}</Col>:<Col >{avata.clone["itemName"]}</Col> }
               {<Col style={{fontSize:"small"}}> {avata?.avata.optionAbility}</Col>}
               </Col>
                {console.log(avata.avata.emblems !== null &&(avata.avata.emblems))}

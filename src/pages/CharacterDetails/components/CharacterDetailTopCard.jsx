@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container,Row,Col } from 'react-bootstrap'
+import TimeLineInfo from './TimeLineInfo'
 
 const CharacterDetailTopCard = ({data,server}) => {
   return (
@@ -7,9 +8,10 @@ const CharacterDetailTopCard = ({data,server}) => {
     <div className="character-info"  style={{marginBottom:"0px", minWidth:"1050px"}}>
       <Row>
         <Col xs={4} sm={4} lg={4} xl={4} className="character-imgcard">
+            <div className='characterDetailBG'>
             <div className="character-imgcard-info">{data?.jobGrowName}</div>
-            <Col xs={12} sm={12} lg={12} xl={12}>
-            <img src={`${data?.characterImage}`} 
+            <Col  xs={12} sm={12} lg={12} xl={12}>
+              <img src={`${data?.characterImage}`} 
                 style={{width:"100%",
                             height:"100%",
                             justifyContent:"center",
@@ -22,7 +24,7 @@ const CharacterDetailTopCard = ({data,server}) => {
             <p className='character-imgcard-info cn'>        
             {data?.characterName}
             </p>
-            <p className='character-imgcard-info sv'>  
+              <p className='character-imgcard-info sv'>  
                     {server==="cain" ? "카인" : "" }
                     {server==="diregie" ? "디레지에" : ""}
                     {server==="siroco" ? "시로코" : ""}
@@ -30,7 +32,8 @@ const CharacterDetailTopCard = ({data,server}) => {
                     {server==="casillas" ? "카시야스" : ""}
                     {server==="hilder" ? "힐더" : ""}
                     {server==="bakal" ? "바칼" : ""}
-            </p>
+              </p>
+            </div>
         </Col>
         <Col xs={6} sm={6} lg={6} xl={6}>
             <div className='fame'>
@@ -43,11 +46,10 @@ const CharacterDetailTopCard = ({data,server}) => {
                 {data?.characterName}
             </div>
             <div className='ad-gu-Name'>
-                <div className='ad-Name'>{data?.adventureName} &gt; </div>
+                <div className='ad-Name'>{data?.adventureName}</div>
                 <div className='gu-Name'>{data?.guildName}</div>
             </div>
-            <div>딜러랭킹</div>
-            <div>데미지</div>
+             <TimeLineInfo/>
         </Col>
       </Row>
       </div>

@@ -8,10 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CharacterList from './pages/CharacterList/CharacterList';
 import { useState } from 'react';
 import CharacterDetails from './pages/CharacterDetails/CharacterDetails';
+import Auction from './pages/AuctionsPage/Auction';
 
 function App() {
   const [selectedServer,setSelectedServer] = useState("선택하세요");
-  const [selectedServerId,setSelectedServerId] = useState("서버");
+  const [selectedServerId,setSelectedServerId] = useState("all");
   const [selectedName, setSelectedName] = useState("");
   const encodeName = encodeURIComponent(selectedName);
 
@@ -27,7 +28,8 @@ function App() {
                 selectedServerId={selectedServerId} setSelectedServerId={setSelectedServerId}
                 selectedName={encodeName} setSelectedName={setSelectedName} 
                 />} />
-           <Route path="servers/characters/characterDetails" element={<CharacterDetails/>} />  
+           <Route path="servers/characters/characterDetails" element={<CharacterDetails/>} /> 
+           < Route path="auction" element= {< Auction/>}/>
         </Route>
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>

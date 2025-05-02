@@ -13,8 +13,7 @@ const CharacterList = ({selectedName,selectedServer,selectedServerId,setSelected
     const Name = query.get("characterName");
     const navigate = useNavigate();
     const {data, isLoding } = useCharacter(server,Name);
-  
-    console.log(data);
+
     
     if(isLoding){
         <h1>Loding....</h1>

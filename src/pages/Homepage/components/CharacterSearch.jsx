@@ -24,7 +24,7 @@ const CharacterSearch = ({selectedName,selectedServer,selectedServerId,setSelect
     const searchEnter=(event)=>{
       if(event.key === "Enter"){
        event.preventDefault(); 
-        if(selectedServerId==="서버" || selectedName ===""){ 
+        if( selectedName ===""){ 
           setSmShow(true);
         }else{
         navigate(`/servers/characters?serverId=${selectedServerId}&characterName=${selectedName}`)
@@ -34,7 +34,7 @@ const CharacterSearch = ({selectedName,selectedServer,selectedServerId,setSelect
 
   const searchButton = () => {
     setLoading(true);
-    if(selectedServerId==="서버" || selectedName ===""){ 
+    if( selectedName ===""){ 
       setSmShow(true);
     }else{
       navigate(`/servers/characters?serverId=${selectedServerId}&characterName=${selectedName}`)
@@ -64,8 +64,10 @@ const CharacterSearch = ({selectedName,selectedServer,selectedServerId,setSelect
     
 
   const userServer = (server) =>{
-    setSelectedServer( server.serverName)
-    setSelectedServerId( server.serverId)
+    server==="all"? setSelectedServer("전체 서버") : setSelectedServer( server.serverName)
+    
+    server==="all"? setSelectedServerId("all") :setSelectedServerId( server.serverId)
+    console.log("서버 :" ,server);
     
   }
 
@@ -83,8 +85,10 @@ const CharacterSearch = ({selectedName,selectedServer,selectedServerId,setSelect
             {selectedServer}
           </Dropdown.Toggle>
             <Dropdown.Menu style={{ width: '200px', maxHeight: '200px', overflowY: 'auto', textAlign:"center"}}>
-            {
-              data?.map((server,index)=>
+             <Dropdown.Item onClick={() => userServer("all")} >
+               전체서버
+             </Dropdown.Item>
+             {data?.map((server,index)=>
                 <Dropdown.Item key={index} onClick={() => userServer(server)} >
                   {server.serverName}
                 </Dropdown.Item>)

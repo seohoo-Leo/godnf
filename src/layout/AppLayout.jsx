@@ -1,21 +1,11 @@
 import React from 'react'
-import { useServers } from '../hooks/useServers'
-import Container from 'react-bootstrap/Container';
-
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import AppFooter from '../common/components/AppFooter';
 import AppHeader from '../common/components/AppHeader';
+import "./AppLayout.style.css"
 
 const AppLayout = () => {
-    
-    const {data, isLoding, IsError} = useServers();
-
-    
-    if(isLoding){
-        <p> Loading ..... </p>
-    }
-
-    
+        
     
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>

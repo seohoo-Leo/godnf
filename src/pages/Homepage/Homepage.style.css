@@ -16,7 +16,7 @@
    width: 500px
 }
 
-.homepage.Container{
+.homepage .Container{
    min-width: 1012px;
    overflow-x: hidden;
    justify-content: center;

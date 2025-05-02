@@ -123,29 +123,31 @@ const ItemInfo = (EItem) => {
                  return result || { Grade: "알 수 없음", GradeNum: "" } ;
               }
            
-              console.log(setPointMap);
+              console.log("장착장비 :",eItem );
               
 
   return (
 
     <Row className='setItem'>
+        { (maxItem[0]!== "공통") &&
         <Row style={{backgroundColor:"#e9edf0"}} >
             <Col  xs={2} sm={2} lg={2} xl={2}  className='item-type'>세트</Col>
             <Col  xs={2} sm={2} lg={2} xl={2} >
                 <img src={`/img/${setItemImgMatch(maxItem[0])}.png`} 
-                    style={{width:"80px", height:"80px", padding:"5px"}}
-                />
+                    style={{width:"80px", height:"80px", padding:"5px"}}/>
             </Col>
-            <Col  xs={4} sm={4} lg={4} xl={4} className={setPointMap.length < 1 ? getPointGrade(maxItem[1]+setPointMap["공통"])["Grade"]:getPointGrade(maxItem[1])["Grade"]}>
+            <Col  xs={4} sm={4} lg={4} xl={4} className={setPointMap['공통'] ? getPointGrade(maxItem[1]+setPointMap["공통"])["Grade"]:getPointGrade(maxItem[1])["Grade"]}
+                style={{fontSize:"18px" , fontWeight:"700"}} >
                 {maxItem[0]}
-                {setPointMap.length < 1 ? getPointGrade(maxItem[1]+setPointMap["공통"])["GradeNum"] :getPointGrade(maxItem[1])["GradeNum"] }
+                {setPointMap['공통'] ? getPointGrade(maxItem[1]+setPointMap["공통"])["GradeNum"] :getPointGrade(maxItem[1])["GradeNum"] }
             </Col>
             <Col  xs={2} sm={2} lg={2} xl={2} style={{color:"brown"}} >
             세트포인트 <span style={{fontSize:"x-large"}}>
-                 {setPointMap.length <1 ? maxItem[1]+setPointMap["공통"] : maxItem[1]}
+                 {setPointMap['공통']  ? maxItem[1]+setPointMap["공통"] : maxItem[1]}
                 </span>
             </Col>
-        </Row>
+        </Row>}
+        
         { eItem?.map((items)=> 
             <Row>
                 <Col  xs={2} sm={2} lg={2} xl={2}  className='item-type'>{items?.slotName}</Col>
