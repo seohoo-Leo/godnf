@@ -85,8 +85,7 @@ app.get("/api/characters", async (req, res) => {
         };
       })
     );
-    
-    console.log(advInfo );
+  
     
     res.json(detailedCharacters);
   } catch (err) {
@@ -303,6 +302,26 @@ app.get('/api/timeline', async (req, res) => {
     res.status(500).json({ error: 'DNF API 호출 실패' });
   } 
 });
+
+ //경매장 검색
+ app.get('/api/auction', async (req, res) => {
+
+  try {
+    const itemName = req.query.itemName
+    const rarity = req.query.rarity
+
+    const {data} = await axios.get(
+      `https://api.neople.co.kr/df/auction?itemName=${itemName}&wordType=full&wordShort=true&q=rarity:${rarity}&sort=unitPrice:unitPrice&limit=400&apikey=${DNF_API_KEY}`
+    );
+
+    res.json(data);
+    
+  } catch (error) {
+    console.error('DNF API 요청 실패:', error);
+    res.status(500).json({ error: 'DNF API 호출 실패' });
+  } 
+});
+
 
 
   // 페이지 접속 (60초까지 기다림)

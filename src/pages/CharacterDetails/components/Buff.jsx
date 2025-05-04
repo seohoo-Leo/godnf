@@ -24,13 +24,10 @@ const Buff = () => {
                       <img src={`https://img-api.neople.co.kr/df/items/${items?.itemId}`}
                           style={{width:"50px", height:"50px", padding:"5px"}}/> 
                      </Col>
-                    <Col  xs={4} sm={4} lg={4} xl={4} className={`${items?.itemRarity}`} >
+                    <Col  xs={6} sm={6} lg={6} xl={6} className={`${items?.itemRarity}`} >
                         <ul className="itemName_tune">
                         <li className='Name'>{items.itemName}</li>
                         </ul>
-                    </Col>
-                    <Col xs={1} sm={1} lg={1} xl={1} style={{fontSize:"large", fontWeight:"bold"}}>
-                           
                     </Col>
                 </Row>     
             )}

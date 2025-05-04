@@ -2,7 +2,7 @@
     height: 100vh;
     border : 0.5px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
-    min-width: 960px;
+    min-width: 540px;
     border-radius: 2%;
     margin-top:  8%;
     padding: 6%;
@@ -12,6 +12,7 @@
     border : 0.5px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
     border-radius: 2%;
+    min-width: 471px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,22 +20,63 @@
 
 .search{
     border-bottom : 0.5px solid rgba(0, 0, 0, 0.3);
-    margin-top: 3%;
-    min-width: 500px;
+    margin-top: 2%;
     flex: 0 0 90%;
-    padding-bottom: 10%;
+   padding-bottom: 3%;
+   display: flex;
+   flex-direction: row;
+}
 
+.result_card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .auction .total_box .search_result{
     border : 0.5px solid rgba(0, 0, 0, 0.3);
     border-radius: 2%;
-    margin-top: 3%;
-    margin-bottom: 10%;
-    min-width: 500px;
-    flex: 0 0 90%;
-    padding: 10%;
-     
+    margin: 2%;
+ 
+    display: flex;
+}
+/* 필터 목록 */
 
+.search_filter{
+    margin: 2%;
+    display: flex;
+    margin-right: 0%;
+    margin-left: 0%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.list_plus{
+    border: 0px;
+    border-radius: 0;
+    background-color: white;
+    padding: 0px;
+}
+
+.detailEnd .col{
+    border : 0.5px solid rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3% ;
+    margin-left: 3%;
+}
+
+.detailEnd .col:hover{
+    background-color: rgba(0, 0, 0, 0.039);
+}
+
+.detailEnd{
+    padding: 0%;
 }
