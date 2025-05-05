@@ -4,18 +4,14 @@ import { Container } from 'react-bootstrap';
 import "./Auction.style.css";
 import SearchFilter from './components/SearchFilter';
 import { useAuction } from '../../hooks/useAuction';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import DetailFilter from './components/DetailFilter';
 import ItemCard from './components/ItemCard';
 
 const Auction = ( ) => {
 
-      
-      const [query,setQuery] =useSearchParams();
-      const itemName = query.get("itemName");
-      const rarity = query.get("rarity");
+      const navigate = useNavigate();
 
-      const {data} = useAuction(itemName,rarity)
 
       const [selectedTypes , setSelectedType] = useState({
         type: [{value: ["귀검사(남)","귀검사(여)","다크나이트", "나이트"],label: '귀검사/다크나이트/나이트'},
@@ -28,7 +24,8 @@ const Auction = ( ) => {
                 { value: ['총검사','총검사'], label: '총검사' },
                 { value: ['아처'], label: '아처' },
               ],
-        value: '무기'
+        value: '무기',
+        typeDetail: ''
       })
 
     
@@ -37,8 +34,9 @@ const Auction = ( ) => {
 
   const handleSearch = (filters) => {
     console.log("검색 조건:", filters);
-
+    navigate(`?itemName=${filters.name}&rarity=${filters.rarity}`)
   };
+
 
 
   return (<div>
@@ -47,9 +45,11 @@ const Auction = ( ) => {
         <SearchFilter onSearch={handleSearch} selectedType={selectedTypes} setSelectedType={setSelectedType} />
         <Col className="result_card"> 
               <Col xs={3} lg={2} xl={2}className="search_filter">
-                 <DetailFilter selectedTypes={selectedTypes}/>
+                 <DetailFilter selectedTypes={selectedTypes} setSelectedType={setSelectedType}/>
                 </Col>
-              <Col xs={9} lg={9}  xl={9} className="search_result"><ItemCard/> </Col>
+              <Col xs={9} lg={9}  xl={9} className="search_result">
+              <ItemCard selectedTypes={selectedTypes}/> 
+              </Col>
          </Col>
       </Row>
     </Container>

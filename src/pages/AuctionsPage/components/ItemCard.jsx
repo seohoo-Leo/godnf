@@ -1,21 +1,47 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useSearchParams } from 'react-router-dom';
+import { useAuction } from '../../../hooks/useAuction';
 
-const ItemCard = () => {
+
+
+const ItemCard = ({selectedTypes}) => {
+
+          const [query,setQuery] =useSearchParams();
+          const itemName = query.get("itemName");
+          const rarity = query.get("rarity");
+        
+
+          const {data} = useAuction(itemName,rarity)
+
+       
+          const auctionItem = data?.rows?.map(a=>a.itemType=== selectedTypes.value? a : "")
+          
+          console.log(data  );
+          
+
+
   return (
-    <Container>
-        <Row>
-            <Col>아이템 사진</Col>
-            <Col>아이템 이름 </Col>
-            <Col>판매가격</Col>
-            <Col></Col>
-        </Row>
-        <Row>
-            <Col>1</Col>
-            <Col>1</Col>
-            <Col>1</Col>
-            <Col>1</Col>
-        </Row>
+    <Container className ="auction_item_card">
+       <Row style={{height:"100%"}}>
+      {auctionItem?.map((item=> item.itemName !==undefined?
+            <Col xs={6} sm={6} className='card'>
+              <Col xs={12} sm={12} className='img'>
+                  <img src={`https://img-api.neople.co.kr/df/items/${item?.itemId}`}
+                        style={{height:"50px"}}/>
+              </Col>
+              <Col xs={12} sm={12}>
+                <div className={`item-name ${item?.itemRarity}`}> 
+                  {item?.itemName}
+                </div>
+               </Col>
+              <Col className="d-none d-lg-block"> 판매가</Col>
+              <Col xs={12} sm={12} className='item-price'>{`${(item?.currentPrice)?.toLocaleString()} 골드`}</Col>
+            </Col> : ""
+    
+            ))} 
+         </Row>
+       
     </Container>
   )
 }

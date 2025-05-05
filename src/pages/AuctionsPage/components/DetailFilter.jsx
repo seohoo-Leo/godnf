@@ -6,7 +6,8 @@ import AccordionContext from 'react-bootstrap/AccordionContext';
 import Card from 'react-bootstrap/Card';
 
 
-const DetailFilter = ({selectedTypes}) => {
+const DetailFilter = ({selectedTypes, setSelectedType}) => {
+
 
 
     const YELLOW = ' #ffcc00'
@@ -14,6 +15,7 @@ const DetailFilter = ({selectedTypes}) => {
 
     function ContextAwareToggle({ children, eventKey, callback }) {
         const { activeEventKey } = useContext(AccordionContext);
+
             const decoratedOnClick = useAccordionButton(
                 eventKey,
                 () => callback && callback(eventKey),
@@ -26,19 +28,26 @@ const DetailFilter = ({selectedTypes}) => {
             style={{ background: isCurrentEventKey ? YELLOW : BLUE,
                     display:'flex', height:"33px", overflow:'hidden',
                     justifyContent:'center', alignContent:'center', textAlign:'center',
-                    textOverflow:"hidden" ,width:"100%", border:`0.5px solid black`,
+                    textOverflow:"hidden" ,width:"100%", border:`0.5px solid white`,
                     color:isCurrentEventKey ? "black" : "white", borderRadius:"5%",
-                    fontWeight:"700"
-                        }}
-            onClick={decoratedOnClick}
-          >
+                    fontWeight:"700"}}
+            onClick={decoratedOnClick} >
             {children}
           </button>
         );
       }
 
-      console.log(selectedTypes);
-      
+    
+      const setDetailType=(a) => {
+        setSelectedType(prev => ({
+          ...prev,
+          "typeDetail":a
+        }))
+        
+        console.log(selectedTypes);
+        
+      }
+ 
 
 
   return (
@@ -50,7 +59,7 @@ const DetailFilter = ({selectedTypes}) => {
           </Card.Header>
           <Accordion.Collapse eventKey={index}>
             <Card.Body className='detailEnd'>
-                {job?.detail?.map((a)=><Col>{a}</Col>)}
+                {job?.detail?.map((a)=> <Col onClick={()=>setDetailType(a)}>{a}</Col>)}
             </Card.Body>
           </Accordion.Collapse>
         </Card>

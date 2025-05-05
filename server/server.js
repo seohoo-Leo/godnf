@@ -311,11 +311,14 @@ app.get('/api/timeline', async (req, res) => {
     const rarity = req.query.rarity
 
     const {data} = await axios.get(
-      `https://api.neople.co.kr/df/auction?itemName=${itemName}&wordType=full&wordShort=true&q=rarity:${rarity}&sort=unitPrice:unitPrice&limit=400&apikey=${DNF_API_KEY}`
+      `https://api.neople.co.kr/df/auction?itemName=${itemName}&wordType=full&wordShort=false&q=rarity:${rarity}&sort=unitPrice:unitPrice&limit=400&apikey=${DNF_API_KEY}`
     );
 
-    res.json(data);
+  
+      res.json(data)
+    console.log(data);
     
+
   } catch (error) {
     console.error('DNF API 요청 실패:', error);
     res.status(500).json({ error: 'DNF API 호출 실패' });

@@ -56,6 +56,7 @@ const SearchFilter = ({onSearch , selectedType, setSelectedType}) => {
         name: '',
         type: '',
         rarity: '',
+        typeDetail:''
       });
 
      
@@ -79,23 +80,26 @@ const SearchFilter = ({onSearch , selectedType, setSelectedType}) => {
 
       const typeSelect = (selected, action) =>{
             setSelectedType((prev)=>({...prev, [action.name]:selected?.value || ''}))
+            setFilters((prev) => ({
+              ...prev,
+              [action.name]: selected?.label || '',
+            }));
       }
 
   return (
     <Form onSubmit={handleSubmit} >
       <Row className="search"> 
-    <Col sm={12} md={12}  lg={3} className='item'>
+    <Col sm={6} md={6}  lg={3} className='item'>
     <Select
             name="type"
             options={typeOptions}
-            placeholder="무기"
+            placeholder="장비 선택"
             onChange={typeSelect}
-            value={selectedType.value}
             menuPlacement="bottom"
             isClearable // 항상 아래로 열림
           />
     </Col>
-    <Col sm={12} md={12} lg={3} className='grade'>
+    <Col sm={6} md={6} lg={3} className='grade'>
     <Select
             name="rarity"
             options={rarityOptions}
