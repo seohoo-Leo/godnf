@@ -24,6 +24,8 @@
     min-width: 540px;
     border-radius: 2%;
     margin-top:  8%;
+    margin-left: 5%;
+    margin-right: 5%;
     padding: 6%;
 }
 
@@ -106,10 +108,13 @@
 .auction_item_card{
     display: flex;
     justify-content: center;
-    align-items: center;
     padding-top:2%;
     padding-bottom: 2%;
-
+    height: 70vh;
+    overflow-y: scroll;
+    border: 1px solid rgba(0, 0, 0, 0.139);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
+    border-radius: 2%;
 }
 
 .auction_item_card .card{
@@ -119,7 +124,10 @@
     align-items: center;
     padding-top:2%;
     padding-bottom: 2%;
-
+    margin-top:2px ;
+    margin-bottom:2px;
+    height: fit-content;
+    cursor: pointer;
     
 }
 
@@ -127,15 +135,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    margin-left: 2%;
 }
 
-.auction_item_card .card .item-name{
+ .item-name{
     white-space: normal;
     word-break: keep-all;
-    overflow-wrap: break-word;
+    overflow-wrap:anywhere;
     text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .auction_item_card .card .item-price{
@@ -144,4 +153,13 @@
     align-items: center;
     justify-content: center;
     padding: 1%;
+    color:#d79c12
 }
+
+.item-text-Info{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}   
