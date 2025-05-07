@@ -332,7 +332,7 @@ app.get('/api/itemName', async (req, res) => {
     const rarity = req.query.rarity
 
     const {data} = await axios.get(
-      `https://api.neople.co.kr/df/items?itemName=${itemName}&wordType=full&${rarity==="전체"?" ":"q=rarity:"+rarity }&limit=30&apikey=${DNF_API_KEY}`
+      `https://api.neople.co.kr/df/items?itemName=${itemName}&wordType=front&${rarity==="전체"?" ":"q=rarity:"+rarity }&limit=30&apikey=${DNF_API_KEY}`
     ); 
 
     res.json(data)
