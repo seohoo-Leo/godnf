@@ -39,7 +39,7 @@ const Auction = ( ) => {
   const [job, setJob] = useState("전체");
   const [weapon, setWeapon] = useState("전체");
   const [grade, setGrade] = useState("전체");
-  const [query, setQuery] = useState("전체");
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [expandedItemId, setExpandedItemId] = useState(null);
 
@@ -106,6 +106,13 @@ const Auction = ( ) => {
           );
       }
 
+      //옥션 상품 없음 
+      const isEmptyData = (data) => {
+        if (!data?.rows) return true;
+        if (data.rows.length === 0) return true;
+        if (data.rows.length === 1 && data.rows[0] === null) return true;
+        return false;
+      };
 
 
 
@@ -236,10 +243,9 @@ const Auction = ( ) => {
                                </Row> 
                               ))}
                               
-              
-                           {!data?.rows&& 
-                                <Col style={{textAlign:"center"}}>등록된 상품이 없습니다.</Col>
-                                }
+                              { isEmptyData(data) &&
+                                   <Col style={{ textAlign: "center" }}>등록된 상품이 없습니다.</Col>
+                                    }             
                              
                       </Row>
                 )}     
