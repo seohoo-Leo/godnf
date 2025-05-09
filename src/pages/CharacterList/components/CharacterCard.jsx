@@ -83,7 +83,7 @@ const CharacterCard = ({ data }) => {
               <Col className="adv">{result.adventureName}</Col>
               <Col className="img">
                 <img
-                  src="/img/fame.png"
+                  src={`${process.env.PUBLIC_URL}/img/fame.png`}
                   alt="명성"
                   style={{ height: '20px', paddingRight: '3%' }}
                 />

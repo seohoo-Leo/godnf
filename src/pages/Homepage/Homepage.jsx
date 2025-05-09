@@ -12,7 +12,7 @@ const Homepage = ({selectedName, selectedServer, selectedServerId, setSelectedNa
   
   // 홈으로 돌아가기 위한 함수
   const gohome = () => {
-    navigate('/');  // '/' 경로로 이동
+    navigate('/godnf');  // '/' 경로로 이동
   }
 
   return (
@@ -21,7 +21,7 @@ const Homepage = ({selectedName, selectedServer, selectedServerId, setSelectedNa
       
         {/* 로고 클릭 시 홈으로 돌아가는 네비게이션 영역 */}
         <div className="nav-section" onClick={gohome}>
-          <img src='./img/logoDNF.png' alt="DNF Logo" />  {/* 로고 이미지 */}
+          <img src={`${process.env.PUBLIC_URL}/img/logoDNF.png`}alt="DNF Logo" />  {/* 로고 이미지 */}
         </div>
 
         {/* 캐릭터 검색 컴포넌트 영역 */}

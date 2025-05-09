@@ -43,7 +43,7 @@ const StatInfo = () => {
               statusMatch(s)? 
                 <Row className='status'> 
                 <Col lg={5} xl={5}>
-                {(<img src= {`${`/img/status/`+`${index}`+`.png`}`} style={{padding:"7px"}}/> )}
+                {(<img src= {`${process.env.PUBLIC_URL}/img/status/${index}.png`} style={{padding:"7px"}}/> )}
                 { statusMatch(s)["name"]}</Col>
                 <Col lg={7} xl={7}
                     style={{borderLeft:"0.5px solid rgba(0, 0, 0, 0.2)"}}>
@@ -57,7 +57,7 @@ const StatInfo = () => {
         statusMatch2(s)? 
             <Row className='status'>                
                 <Col lg={5} xl={5}>
-                { statusMatch2(s) ? (<img src= {`${`/img/status/`+`${index}`+`.png`}`}  style={{padding:"7px"}}/> ): "" }
+                { statusMatch2(s) ? (<img src= {`${process.env.PUBLIC_URL}/img/status/${index}.png`}  style={{padding:"7px"}}/> ): "" }
                 {statusMatch2(s) ? statusMatch2(s)["name"]: ""}
                 </Col>
                 <Col lg={7} xl={7}

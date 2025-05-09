@@ -9,7 +9,7 @@ const AppHeader = () => {
     <div>
       <Navbar bg="primary" data-bs-theme="dark">
     <Container>
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/godnf">
       <div style={{
         width:"200px",
         height:"50px",
@@ -24,12 +24,12 @@ const AppHeader = () => {
               height:"auto",
               objectFit: "cover",
               objectPosition: "center center", }}
-              src='/img/logoDNF.png'/>
+              src={`${process.env.PUBLIC_URL}/img/logoDNF.png`}/>
         </div>
         </Navbar.Brand>
       <Nav className="me-auto">
-        <Nav.Link href="/">캐릭터 검색</Nav.Link>
-        <Nav.Link href="/auction">아이템 검색</Nav.Link>
+        <Nav.Link href="/godnf">캐릭터 검색</Nav.Link>
+        <Nav.Link href="/godnf/auction">아이템 검색</Nav.Link>
       </Nav>
     </Container>
     </Navbar>

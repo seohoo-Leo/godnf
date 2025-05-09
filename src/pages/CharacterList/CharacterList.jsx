@@ -40,7 +40,7 @@ const CharacterList = ({
     <Container>
       {/* 상단 로고 영역 - 클릭 시 홈으로 이동 */}
       <div className="nav-section" onClick={gohome}>
-        <img src='../img/logoDNF.png' alt="로고" />
+        <img src={`${process.env.PUBLIC_URL}/img/logoDNF.png`} alt="로고" />
       </div>
 
       {/* 캐릭터 검색 컴포넌트 */}

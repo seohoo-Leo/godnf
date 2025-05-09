@@ -50,7 +50,7 @@ const CharacterDetailTopCard = ({ data, server }) => {
           <Col xs={6}>
             {/* 명성치 표시 */}
             <div className='fame'>
-              <img src="/img/fame.png" style={{ height: "30px", paddingRight: "2%" }} alt="fame icon" />
+              <img src={`${process.env.PUBLIC_URL}/img/fame.png`} style={{ height: "30px", paddingRight: "2%" }} alt="fame icon" />
               {data?.fame}
             </div>
 

@@ -34,8 +34,8 @@ const ItemInfo = ({EItem}) => {
       {Array.from({ length: count }).map((_, idx) => (
         <img
           key={idx}
-          src={`/img/${item}.png`}
-          style={{ width: '30px', height: '30px' }}
+          src={`${process.env.PUBLIC_URL}/img/${item}.png`}
+          style={{ width: '20px', height: '20px' }}
         />
       ))}
     </>
@@ -125,7 +125,7 @@ const getPointGrade = (point) =>
         <Row style={{backgroundColor:"#e9edf0"}} >
             <Col  xs={2} className='item-type'>세트</Col>
             <Col  xs={2}  >
-              {maxItem[0] && <img src={`{/img/${setItemImgMatch(maxItem[0])}.png}`} style={{width:"80px", height:"80px", padding:"5px"}}/>  }
+              {maxItem[0] && <img src={`${process.env.PUBLIC_URL}/img/${setItemImgMatch(maxItem[0])}.png`} style={{width:"80px", height:"80px", padding:"5px"}}/>  }
             </Col>
             <Col  xs={4}  className={Grade}
                 style={{fontSize:"18px" , fontWeight:"700"}} >
@@ -162,7 +162,7 @@ const getPointGrade = (point) =>
 
                 </Col>
                 <Col  xs={2}  className={`${items?.upgradeInfo?.itemRarity}`}>
-                        {items.upgradeInfo?.itemName?.slice(0, 2)}   
+                        {items.upgradeInfo?.itemName?.slice(0, 2)}  <br/>
                         {items.fusionOption?.options?.[0]?.engrave?.color === 'gold' &&
               ImageRepeater('gold', items.fusionOption.options[0].engrave.value)}
                 </Col>

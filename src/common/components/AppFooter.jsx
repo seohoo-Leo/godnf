@@ -7,7 +7,7 @@ const AppFooter = () => {
       <Row className='info'>
         <Col className='logo'>  
         <a href="http://developers.neople.co.kr" target="_blank">
-        <img src="./img/neopleLogo.png" alt="Neople 오픈 API"
+        <img src={`${process.env.PUBLIC_URL}/img/neopleLogo.png`} alt="Neople 오픈 API"
              style={{ height: "60px"}} /> </a>
         </Col>
         <Col className='right'>Copyright© goDNF All rights reserved</Col>
