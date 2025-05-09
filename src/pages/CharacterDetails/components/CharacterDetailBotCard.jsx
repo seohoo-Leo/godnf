@@ -1,128 +1,116 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
-import ItemInfo from './ItemInfo'
-import StatInfo from './StatInfo'
-import Avata from './Avata'
-import Buff from './Buff'
-import Talisman from './Talisman'
-import DetailStat from './DetailStat'
+import React, { useState, useEffect, useRef } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import ItemInfo from './ItemInfo';
+import StatInfo from './StatInfo';
+import Avata from './Avata';
+import Buff from './Buff';
+import Talisman from './Talisman';
+import DetailStat from './DetailStat';
 
+/**
+ * CharacterDetailBotCard 컴포넌트
+ * - 캐릭터 상세 하단 영역에서 탭별로 정보(장비, 스탯, 아바타 등)를 전환해서 표시하는 UI
+ * - 각 탭은 컴포넌트로 분리되어 있으며, 클릭 시 슬라이드 전환 효과 및 높이 조정 기능이 포함됨
+ */
 const CharacterDetailBotCard = (EItem) => {
+  const [activeComponent, setActiveComponent] = useState('item'); // 현재 표시되는 탭 상태
 
-  const [activeComponent,setActiveComponent] = useState('item');
-
-  console.log("activeComponet : ", activeComponent);
-  
-
+  // 탭 클릭 시 상태 변경 핸들러
   const handleClick = (componentName) => {
-    setActiveComponent(componentName);         // 컴포넌트 변경
+    setActiveComponent(componentName);
   };
 
-    const containerRef = useRef(null);
-    const itemRef = useRef(null);
-    const avatarRef = useRef(null);
-    const statRef = useRef(null);
-    const detailStatRef = useRef(null);
-    const buffRef = useRef(null);
-    const talismanRef = useRef(null);
-    const [height, setHeight] = useState(itemRef?.current?.offsetHeight);
+  // 각 컴포넌트 DOM 참조
+  const containerRef = useRef(null);
+  const itemRef = useRef(null);
+  const avatarRef = useRef(null);
+  const statRef = useRef(null);
+  const detailStatRef = useRef(null);
+  const buffRef = useRef(null);
+  const talismanRef = useRef(null);
 
-    useEffect(() => {
-      let currentHeight = 0;
-      if (activeComponent ==='item' && itemRef.current) {
-        currentHeight = itemRef.current.offsetHeight;
-      } else if (activeComponent === 'avatar' && avatarRef.current) {
-        currentHeight = avatarRef.current.offsetHeight;
-      }else if (activeComponent === 'stat' && statRef.current) {
-        currentHeight = statRef.current.offsetHeight;
-      } else if (activeComponent === 'detailStat'&& detailStatRef.current) {
-        currentHeight = detailStatRef.current.offsetHeight; 
-      } else if (activeComponent === 'buff'&& buffRef.current) {
-        currentHeight = buffRef.current.offsetHeight; 
-      }else if (activeComponent === 'talisman'&& talismanRef.current) {
-        currentHeight = talismanRef.current.offsetHeight;
+  const [height, setHeight] = useState(); // 현재 표시 중인 컴포넌트 높이
+
+
+  // 선택된 탭의 컴포넌트 높이를 계산하여 부모 컨테이너에 적용
+  useEffect(() => {
+    const refs = {
+      item: itemRef,
+      avatar: avatarRef,
+      stat: statRef,
+      detailStat: detailStatRef,
+      buff: buffRef,
+      talisman: talismanRef,
+    };
+  
+    const observer = new ResizeObserver(() => {
+      const activeRef = refs[activeComponent];
+      if (activeRef?.current) {
+        setHeight(activeRef.current.offsetHeight);
       }
-      setHeight(currentHeight);
-    }, [activeComponent]);
+    });
+  
+    const activeRef = refs[activeComponent];
+    if (activeRef?.current) {
+      observer.observe(activeRef.current);
+    }
+  
+    return () => {
+      observer.disconnect();
+    };
+  }, [activeComponent]);
 
-    useEffect(() => {
-      let currentHeight = 0;
-      if (activeComponent ==='item' && itemRef.current) {
-        currentHeight = itemRef.current.offsetHeight;
-      } else if (activeComponent === 'avatar' && avatarRef.current) {
-        currentHeight = avatarRef.current.offsetHeight;
-      }else if (activeComponent === 'stat' && statRef.current) {
-        currentHeight = statRef.current.offsetHeight;
-      } else if (activeComponent === 'detailStat'&& detailStatRef.current) {
-        currentHeight = detailStatRef.current.offsetHeight; 
-      } else if (activeComponent === 'buff'&& buffRef.current) {
-        currentHeight = buffRef.current.offsetHeight; 
-      }else if (activeComponent === 'talisman'&& talismanRef.current) {
-        currentHeight = talismanRef.current.offsetHeight;
-      }
-      setHeight(currentHeight);
-    })
-
-      const CommonStyle = {
-        position: 'absolute',   // 겹쳐놓기
-        top: 0,
-        left: 0,
-        width: '100%',
-        transition: 'opacity 0.3s ease, transform 0.3s ease',
-      };
-
+  // 전환 애니메이션과 겹쳐진 컴포넌트 처리를 위한 공통 스타일
+  const CommonStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    transition: 'opacity 0.3s ease, transform 0.3s ease',
+  };
 
   return (
-    <Container style={{height:"auto" ,minWidth:"1200px"}}>
-        <div className="character-info-bot" style={{marginTop:"30px", minWidth:"1050px"}}>
-            <Row className='menubar'>
-                <Col onClick={()=>handleClick('item')} 
-                    style={{ 
-                      cursor: 'pointer', 
-                      fontWeight: activeComponent === 'item' ? 'bold' : '' ,
-                      borderBottom: activeComponent === 'item' ? '2px solid black': ""
-                        }}>장착장비</Col>
-                <Col onClick={()=>handleClick('stat')}
-                      style={{ 
-                        cursor: 'pointer', 
-                        fontWeight: activeComponent === 'stat' ? 'bold' : '' ,
-                        borderBottom: activeComponent === 'stat' ? '2px solid black': ""
-                          }}>스탯</Col>
-                <Col onClick={()=>handleClick('detailStat')}
-                      style={{ 
-                        cursor: 'pointer', 
-                        fontWeight: activeComponent === 'detailStat' ? 'bold' : '' ,
-                        borderBottom: activeComponent === 'detailStat' ? '2px solid black': ""
-                          }}>세부스탯</Col>
-                <Col onClick={()=>handleClick('avatar')}
-                      style={{ 
-                        cursor: 'pointer', 
-                        fontWeight: activeComponent === 'avatar' ? 'bold' : '' ,
-                        borderBottom: activeComponent === 'avatar' ? '2px solid black': "",
-                        paddingTop: "3px",
-                        marginBottom: "2px"
-                          }}><div>아바타</div>
-                             <div>크리쳐</div></Col>
-                <Col onClick={()=>handleClick('buff')}
-                      style={{ 
-                        cursor: 'pointer', 
-                        fontWeight: activeComponent === 'buff' ? 'bold' : '' ,
-                        borderBottom: activeComponent === 'buff' ? '2px solid black': ""
-                          }}>버프강화</Col>
-                <Col onClick={()=>handleClick('talisman')}
-                      style={{ 
-                        cursor: 'pointer', 
-                        fontWeight: activeComponent === 'talisman' ? 'bold' : '' ,
-                        borderBottom: activeComponent === 'talisman' ? '2px solid black': ""
-                          }}>탈리스만</Col>
-            </Row>
-            <div 
+    <Container style={{ height: "auto", minWidth: "1200px" }}>
+      <div className="character-info-bot" style={{ marginTop: "30px", minWidth: "1050px" }}>
+        
+        {/* 탭 메뉴 영역 */}
+        <Row className='menubar'>
+          {[
+            { key: 'item', label: '장착장비' },
+            { key: 'stat', label: '스탯' },
+            { key: 'detailStat', label: '세부스탯' },
+            { key: 'avatar', label: ['아바타', '크리쳐'] },
+            { key: 'buff', label: '버프강화' },
+            { key: 'talisman', label: '탈리스만' },
+          ].map(tab => (
+            <Col
+              key={tab.key}
+              onClick={() => handleClick(tab.key)}
+              style={{
+                cursor: 'pointer',
+                fontWeight: activeComponent === tab.key ? 'bold' : '',
+                borderBottom: activeComponent === tab.key ? '2px solid black' : '',
+                paddingTop: tab.key === 'avatar' ? '3px' : '',
+                marginBottom: tab.key === 'avatar' ? '2px' : '',
+              }}
+            >
+              {Array.isArray(tab.label)
+                ? tab.label.map((line, idx) => <div key={idx}>{line}</div>)
+                : tab.label}
+            </Col>
+          ))}
+        </Row>
+
+        {/* 탭 내용 컨테이너 */}
+        <div
           ref={containerRef}
           style={{
             position: 'relative',
             height: `${height}px`,
             transition: 'height 0.3s ease',
-          }}>
+          }}
+        >
+          {/* 각 컴포넌트: 조건에 따라 페이드 및 스케일 효과 */}
           <div
             ref={itemRef}
             style={{
@@ -132,7 +120,7 @@ const CharacterDetailBotCard = (EItem) => {
               pointerEvents: activeComponent === 'item' ? 'auto' : 'none',
             }}
           >
-            <ItemInfo  EItem={EItem} />
+            <ItemInfo EItem={EItem} />
           </div>
 
           <div
@@ -144,7 +132,7 @@ const CharacterDetailBotCard = (EItem) => {
               pointerEvents: activeComponent === 'stat' ? 'auto' : 'none',
             }}
           >
-            <StatInfo/>
+            <StatInfo />
           </div>
 
           <div
@@ -156,9 +144,9 @@ const CharacterDetailBotCard = (EItem) => {
               pointerEvents: activeComponent === 'detailStat' ? 'auto' : 'none',
             }}
           >
-            <DetailStat/>
+            <DetailStat />
           </div>
-    
+
           <div
             ref={avatarRef}
             style={{
@@ -180,8 +168,9 @@ const CharacterDetailBotCard = (EItem) => {
               pointerEvents: activeComponent === 'buff' ? 'auto' : 'none',
             }}
           >
-            <Buff/>
+            <Buff />
           </div>
+
           <div
             ref={talismanRef}
             style={{
@@ -191,16 +180,12 @@ const CharacterDetailBotCard = (EItem) => {
               pointerEvents: activeComponent === 'talisman' ? 'auto' : 'none',
             }}
           >
-            <Talisman/>
+            <Talisman />
           </div>
-    
-    
-          {/* 다른 컴포넌트들도 동일하게 */}
-        </div>         
         </div>
-       
+      </div>
     </Container>
-  )
-}
+  );
+};
 
-export default CharacterDetailBotCard
+export default CharacterDetailBotCard;

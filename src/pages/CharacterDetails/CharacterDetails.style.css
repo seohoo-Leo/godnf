@@ -281,6 +281,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    flex-direction: row;
 }
 
 .status_detail.Name{

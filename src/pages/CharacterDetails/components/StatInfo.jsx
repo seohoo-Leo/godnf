@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useCharacterStatus } from '../../../hooks/useCharacterStatus'
 import { useSearchParams } from 'react-router-dom'
 
 const StatInfo = () => {
-
+ // ⬇️ URL에서 serverId와 characterId 추출
     const [query,setQuery] =useSearchParams();
     const server = query.get('server');
     const Name = query.get('name')
@@ -12,7 +12,7 @@ const StatInfo = () => {
     const {data} = useCharacterStatus(server, Name)
     let statusNeed = []
     let Matchedstatus = {}
-    data?.status?.map(status=> 
+    data?.status?.map(status=>  
         status.length <  statusNeed.push(status));
 
     

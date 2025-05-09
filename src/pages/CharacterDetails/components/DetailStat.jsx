@@ -9,33 +9,44 @@ const DetailStat = () => {
     const server = query.get('server');
     const Name = query.get('name')
 
+      // 캐릭터 스탯 데이터 호출 (커스텀 훅 사용)
     const {data} = useCharacterStatus(server, Name)
-    let MStatus = {}
 
-    const  statusMatch=(sta)=>{
+     // 중요 스탯 이름 정의
+  // 중요 스탯 이름 정의
+  const importantStats = [
+    "공격력 증가",
+    "버프력",
+    "최종 데미지 증가",
+    "쿨타임 감소",
+    "쿨타임 회복속도",
+    "최종 쿨타임 감소율"
+  ];
 
-        const NeedStatus = ["공격력 증가" , "버프력", "최종 데미지 증가", "쿨타임 감소", "쿨타임 회복속도", "최종 쿨타임 감소율"]
+  // 중요 스탯만 필터링
+  const filteredStats = data?.status?.filter(stat => importantStats.includes(stat.name));
+
+  const filteredStats2 = data?.status?.filter(stat=> ["공격력 증폭","버프력 증폭"].includes(stat.name));
+
     
-        if( NeedStatus?.includes(sta?.name)){
-              
-            return MStatus = {"name": sta?.name , "value" : sta?.value}
-        }
-   
-    }
-        
-    
+  console.log(filteredStats2);
     
 
   return (
     <Row className='setItem'>
-        {data?.status?.map((sta, index) =>
-             statusMatch(sta) ?<Row >
-                 <Col  xs={4} sm={4} lg={4} xl={4}  className='status_detail Name'>{sta?.name }</Col>
-                 <Col  xs={8} sm={8} lg={8} xl={8}  className='status_detail Num'>
-                  { sta?.name === "공격력 증가" || sta?.name ==="버프력" ? sta?.value +`(` + data.status[ index+2].value +" %)" : + sta?.value + " %"  }
+        { filteredStats?.map((stat, i) =>
+              <Row>
+                  {/* 스탯 이름 */}
+                  <Col  xs={4}  className='status_detail Name'>
+                   {stat?.name}
+                  </Col>
+                   {/* 스탯 값 출력: "공격력 증가"와 "버프력"은 괄호 안에 %값 표시 */}
+                 <Col  xs={8}   className='status_detail Num'>
+                 {["공격력 증가", "버프력"].includes(stat.name)? 
+                 `${stat.value} (${filteredStats2[i]?.value} %)` // 예: 1000 (35 %)
+              : `${stat.value} %`}
                 </Col>
-            </Row> : ""
-                           
+            </Row>         
         )}
     </Row>
   )
