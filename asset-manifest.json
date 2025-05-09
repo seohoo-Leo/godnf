@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/godnf/static/css/main.9c9fda72.css",
+    "main.js": "/godnf/static/js/main.d116410e.js",
+    "static/media/BG.jpg.png": "/godnf/static/media/BG.jpg.c7509be21997a1367a0a.png",
+    "index.html": "/godnf/index.html",
+    "main.9c9fda72.css.map": "/godnf/static/css/main.9c9fda72.css.map",
+    "main.d116410e.js.map": "/godnf/static/js/main.d116410e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9c9fda72.css",
+    "static/js/main.d116410e.js"
+  ]
+}
