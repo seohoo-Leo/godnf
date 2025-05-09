@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 const fetchAvata=async({serverId,characterId})=>{
-    const res = await axios.get(`http://localhost:3001/api/avata?serverId=${serverId}&characterId=${characterId}`)
+    const res = await axios.get(`/api/avata?serverId=${serverId}&characterId=${characterId}`)
     return res 
 }
 

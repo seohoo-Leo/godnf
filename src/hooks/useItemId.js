@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 const fetchItemId=async(itemId)=>{
-    const res = await axios.get(`http://localhost:3001/api/itemId?itemId=${itemId}`)
+    const res = await axios.get(`/api/itemId?itemId=${itemId}`)
     return res
 
 }

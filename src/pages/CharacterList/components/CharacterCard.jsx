@@ -97,7 +97,7 @@ const CharacterCard = ({ data }) => {
         {/* ⬇️ 검색 결과가 없는 경우 메시지 출력 */}
         {data?.length < 1 && <h3 style={{ textAlign: 'center' }}>검색결과가 없습니다</h3>}
         {data === undefined && <h3 style={{ textAlign: 'center' }}>검색 결과</h3>}
-      </Row>
+      </Row> 
     </Container>
   );
 };

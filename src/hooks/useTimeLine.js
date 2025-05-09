@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 const fetchTimeLine=async({serverId,characterId})=>{
-    const res = await axios.get(`http://localhost:3001/api/timeline?serverId=${serverId}&characterId=${characterId}`)
+    const res = await axios.get(`/api/timeline?serverId=${serverId}&characterId=${characterId}`)
     return res 
 }
 
