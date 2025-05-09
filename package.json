@@ -2,8 +2,8 @@
   "name": "godnf",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://seohoo-Leo.github.io/godnf",
-  "dependencies": {
+  "homepage": "https://seohoo-Leo.github.io/godnf"  ,
+   "dependencies": {
     "@tanstack/react-query": "^5.74.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
