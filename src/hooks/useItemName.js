@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 const fetchItemName=async(itemName,rarity)=>{
-    const res = await axios.get(`/api/itemName?itemName=${itemName}&rarity=${rarity}`)
+    const res = await axios.get(`https://dnf-server.onrender.com/api/itemName?itemName=${itemName}&rarity=${rarity}`)
     return res
 
 }

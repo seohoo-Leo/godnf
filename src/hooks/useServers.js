@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 const fetchServers=async()=>{
- const res= await axios.get('/api/servers');
+ const res= await axios.get('https://dnf-server.onrender.com/api/servers');
  return res.data.rows
 }
 
