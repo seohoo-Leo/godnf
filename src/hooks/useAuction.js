@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 const fetchAuction=async({itemId,rarity})=>{
-    const res = await axios.get(`https://dnf-server.onrender.com/api/auction?itemId=${itemId}&rarity=${rarity}`)
+    const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/auction?itemId=${itemId}&rarity=${rarity}`)
     return res 
 }
 
