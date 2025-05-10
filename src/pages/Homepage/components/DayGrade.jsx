@@ -9,7 +9,7 @@ const DayGrade = () => {
   useEffect(() => {
     const fetchGrade = async () => {
       try {
-        const res = await axios.get('http://localhost:3001/api/today-grade');
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/today-grade`);
         setGrade(res.data.grade);
       } catch (error) {
         setGrade('불러오기 실패');
