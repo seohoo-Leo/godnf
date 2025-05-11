@@ -12,7 +12,7 @@ const Homepage = ({selectedName, selectedServer, selectedServerId, setSelectedNa
   
   // 홈으로 돌아가기 위한 함수
   const gohome = () => {
-    navigate('/godnf');  // '/' 경로로 이동
+    navigate('/');  // '/' 경로로 이동
   }
 
   return (
