@@ -16,7 +16,7 @@ const CharacterCard = ({ data }) => {
       const promise = data.map((char) =>
         axios
           .get(
-            `http://localhost:3001/api/characters/details?serverId=${char.serverId}&characterId=${char.characterId}`
+            `${process.env.REACT_APP_API_BASE_URL}/api/characters/details?serverId=${char.serverId}&characterId=${char.characterId}`
           )
           .then((res) => ({
             ...char,
@@ -37,7 +37,7 @@ const CharacterCard = ({ data }) => {
 
   // ⬇️ 캐릭터 클릭 시 상세 페이지로 이동
   const goCharacterDetails = (serverId, characterId) => {
-    navigate(`characterDetails?server=${serverId}&name=${characterId}`);
+    navigate(`characterDetails?serverId=${serverId}&characterId=${characterId}`);
   };
 
   return (
