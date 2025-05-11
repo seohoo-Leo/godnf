@@ -18,7 +18,7 @@ const CharacterDetails = () => {
 
   //  장착 장비 정보 호출
   const { data: EItem } = useEItem(server, Name);
-
+  console.log(process.env.REACT_APP_API_BASE_URL)
   return (
     <Container>
       {/*캐릭터 상단 카드 (기본 정보 렌더링) */}
