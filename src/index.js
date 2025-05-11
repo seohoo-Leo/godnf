@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <QueryClientProvider client={queryClient}>
-    <BrowserRouter basename="/godnf">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </QueryClientProvider>
