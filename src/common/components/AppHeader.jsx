@@ -9,7 +9,7 @@ const AppHeader = () => {
     <div>
       <Navbar bg="primary" data-bs-theme="dark">
     <Container>
-      <Navbar.Brand href="/godnf">
+      <Navbar.Brand href="/">
       <div style={{
         width:"200px",
         height:"50px",
@@ -28,8 +28,8 @@ const AppHeader = () => {
         </div>
         </Navbar.Brand>
       <Nav className="me-auto">
-        <Nav.Link href="/godnf">캐릭터 검색</Nav.Link>
-        <Nav.Link href="/godnf/auction">아이템 검색</Nav.Link>
+        <Nav.Link href="/">캐릭터 검색</Nav.Link>
+        <Nav.Link href="/auction">아이템 검색</Nav.Link>
       </Nav>
     </Container>
     </Navbar>
