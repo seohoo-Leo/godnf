@@ -37,7 +37,7 @@ const CharacterCard = ({ data }) => {
 
   // ⬇️ 캐릭터 클릭 시 상세 페이지로 이동
   const goCharacterDetails = (serverId, characterId) => {
-    navigate(`characterDetails?serverId=${serverId}&characterId=${characterId}`);
+    navigate(`characterDetails?server=${serverId}&Name=${characterId}`);
   };
 
   return (

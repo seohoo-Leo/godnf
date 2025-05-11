@@ -10,8 +10,8 @@ import { useEItem } from '../../hooks/useEItem';
 const CharacterDetails = () => {
   // URL 쿼리 파라미터에서 서버 ID 및 캐릭터 ID 추출
   const [query, setQuery] = useSearchParams();
-  const server = query.get('serverId');
-  const Name = query.get('characterId');
+  const server = query.get('server');
+  const Name = query.get('Name');
 
   //  캐릭터 기본 정보 호출 (모험단명, 직업 등)
   const { data } = useCharacterDetail(server, Name);
