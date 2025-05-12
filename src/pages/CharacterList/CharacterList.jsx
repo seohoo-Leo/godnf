@@ -5,15 +5,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCharacter } from '../../hooks/useCharacter';  // 캐릭터 정보 요청을 위한 커스텀 훅
 import "../CharacterList/CharacterList.style.css";
 import CharacterCard from './components/CharacterCard';
+import useSelectedInfo from '../../store/useSelectedInfo';
 
-const CharacterList = ({
-  selectedName,
-  selectedServer,
-  selectedServerId,
-  setSelectedName,
-  setSelectedServer,
-  setSelectedServerId
-}) => {
+const CharacterList = () => {
 
   // URL에서 쿼리 파라미터(serverId, characterName) 추출
   const [query, setQuery] = useSearchParams();
@@ -44,11 +38,7 @@ const CharacterList = ({
       </div>
 
       {/* 캐릭터 검색 컴포넌트 */}
-      <CharacterSearch
-        selectedServer={selectedServer} setSelectedServer={setSelectedServer}
-        selectedServerId={selectedServerId} setSelectedServerId={setSelectedServerId}
-        selectedName={selectedName} setSelectedName={setSelectedName}
-      />
+      <CharacterSearch/>
 
       {/* 캐릭터 목록 카드 컴포넌트 */}
       <CharacterCard data={data} />

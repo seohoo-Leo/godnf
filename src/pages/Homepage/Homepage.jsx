@@ -4,9 +4,12 @@ import "../Homepage/Homepage.style.css"  // 스타일 파일 import
 import CharacterSearch from './components/CharacterSearch'  // 캐릭터 검색 컴포넌트 import
 import Todaygrade from './components/Todaygrade'  // 오늘의 등급 컴포넌트 import
 import { useNavigate } from 'react-router-dom'  // 페이지 이동을 위한 useNavigate 훅 import
+import useSelectedInfo from '../../store/useSelectedInfo'
 
 // Homepage 컴포넌트 정의
-const Homepage = ({selectedName, selectedServer, selectedServerId, setSelectedName, setSelectedServer, setSelectedServerId}) => {
+const Homepage = () => {
+
+  const {selectedName, selectedServer, selectedServerId, setSelectedName, setSelectedServer, setSelectedServerId} = useSelectedInfo();
 
   const navigate = useNavigate();  // 페이지 이동을 위한 navigate 함수 사용
   
@@ -26,14 +29,7 @@ const Homepage = ({selectedName, selectedServer, selectedServerId, setSelectedNa
 
         {/* 캐릭터 검색 컴포넌트 영역 */}
         <div className="search-section">
-          <CharacterSearch 
-            selectedServer={selectedServer} 
-            setSelectedServer={setSelectedServer}
-            selectedServerId={selectedServerId} 
-            setSelectedServerId={setSelectedServerId}
-            selectedName={selectedName} 
-            setSelectedName={setSelectedName}
-          />
+          <CharacterSearch />
         </div>
 
         {/* 구분선 */}

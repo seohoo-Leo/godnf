@@ -11,42 +11,16 @@ import Auction from './pages/AuctionsPage/Auction';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [selectedServer,setSelectedServer] = useState("선택하세요");
-  const [selectedServerId,setSelectedServerId] = useState("all");
-  const [selectedName, setSelectedName] = useState("");
+
  
 
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
         {/* 홈 페이지 */}
-        <Route
-          index
-          element={
-            <Homepage
-              selectedServer={selectedServer}
-              setSelectedServer={setSelectedServer}
-              selectedServerId={selectedServerId}
-              setSelectedServerId={setSelectedServerId}
-              selectedName={encodeURIComponent(selectedName)} // URL 인코딩된 이름 전달
-              setSelectedName={setSelectedName}
-            />
-          }
-        />
+        <Route index element={ <Homepage/>}/>
         {/* 캐릭터 리스트 페이지 */}
-        <Route
-          path="servers/characters"
-          element={
-            <CharacterList
-              selectedServer={selectedServer}
-              setSelectedServer={setSelectedServer}
-              selectedServerId={selectedServerId}
-              setSelectedServerId={setSelectedServerId}
-              selectedName={encodeURIComponent(selectedName)}
-              setSelectedName={setSelectedName}
-            />
-          }
-        />
+        <Route path="servers/characters" element={ <CharacterList/>}/>
         {/* 캐릭터 상세 */}
         <Route path="servers/characters/:characterId" element={<CharacterDetails />} />
         {/* 경매장 */}

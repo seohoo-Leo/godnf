@@ -2,7 +2,7 @@
   "name": "godnf",
   "version": "0.1.0",
   "private": true,
-   "dependencies": {
+  "dependencies": {
     "@tanstack/react-query": "^5.74.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -20,7 +20,8 @@
     "react-router-dom": "^7.5.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.10.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^5.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,7 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-     "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +53,4 @@
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }
-
 }
-

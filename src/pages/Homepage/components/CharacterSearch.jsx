@@ -7,14 +7,17 @@ import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import useSelectedInfo from '../../../store/useSelectedInfo';
 
-const CharacterSearch = ({selectedName, selectedServer, selectedServerId, setSelectedName, setSelectedServer, setSelectedServerId}) => {
+const CharacterSearch = () => {
   
   // 서버 데이터를 가져오는 커스텀 훅
   const { data, isLoding, isError, error } = useServers();
   const navigate = useNavigate();  // 페이지 네비게이션을 위한 훅
   const [isLoading, setLoading] = useState(false);  // 로딩 상태 관리
   const [smShow, setSmShow] = useState(false);  // 오류 모달 상태 관리
+  const {selectedName, selectedServer, selectedServerId, setSelectedName, setSelectedServer, setSelectedServerId} = useSelectedInfo();
+
 
   // 캐릭터명 입력 시 선택된 캐릭터명을 상태에 저장
   const inputName = (event) => {
