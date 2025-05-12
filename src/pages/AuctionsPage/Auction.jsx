@@ -4,7 +4,8 @@ import { Container } from 'react-bootstrap';
 import "./Auction.style.css";
 import { useAuction } from '../../hooks/useAuction';
 import useItemInfo from '../../store/useItemInfo';
-import Filter from './components/filter';
+import Filter from './components/Filter';
+
 
 function Auction() {
 
