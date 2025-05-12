@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useItemName } from '../../../hooks/useItemName';
 import useItemInfo from '../../../store/useItemInfo';
-
+import { Modal } from 'react-bootstrap';
 
 const Filter = () => {
-
+    const [smShow, setSmShow] = useState(false);
     const{category,job,weapon,grade,query,
         setCategory,setJob,setWeapon,setGrade,setQuery,setResults,setExpandedItemId,
          JOBSDETAIL,CATEGORIES,JOBS,GRADES,JOB_WEAPONS,ARMOR_TYPES,ACCESSORY_TYPES,SPECIALGEAR_TYPES } = useItemInfo();
@@ -36,6 +36,17 @@ const Filter = () => {
     setExpandedItemId(null);
   };
 
+  const searchEnter = (event) =>{
+    if (event.key === "Enter") {  // Enter 키가 눌리면
+        event.preventDefault();  // 기본 동작 방지 (폼 제출 등)
+        if (query === "") {  // 아이템명이 비어있는 경우
+           setSmShow(true);
+        } else {
+          handleSearch()
+        }
+      }
+  }
+
   return (
     <div className="row g-2 mb-4">
         <div className="col-md">
@@ -63,14 +74,32 @@ const Filter = () => {
         </div>
 
         <div className="col-md">
-          <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="아이템 이름" className="form-control" />
+          <input type="text" value={query} onKeyPress={searchEnter} onChange={(e) => setQuery(e.target.value)} placeholder="아이템 이름" className="form-control" />
         </div>
 
         <div className="col-md-auto">
           <button onClick={handleSearch} className="btn btn-primary w-100">검색</button>
         </div>
+
+          {/* 오류 메시지를 띄우는 모달 */}
+      <Modal
+        size="sm"
+        show={smShow}
+        onHide={() => setSmShow(false)}  
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            Error
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>서버와 캐릭터명을 확인해주세요</Modal.Body>  {/* 오류 메시지 */}
+      </Modal>
+
+
       </div>
 
+     
   )
 }
 
