@@ -10,7 +10,7 @@ import Filter from './components/Filter';
 function Auction() {
 
   const{job,grade,results,expandedItemId, setExpandedItemId} = useItemInfo();
-
+  
     // 데이터 훅 사용
   const { data } = useAuction(expandedItemId, grade);
  
@@ -32,9 +32,7 @@ function Auction() {
 
   // 아이템 클릭 시 상세 정보 표시
   const showAuction = (itemId) => {
-    setExpandedItemId(prev => prev === itemId ? null : itemId);
-    console.log(expandedItemId);
-    
+    setExpandedItemId(itemId)
   };
 
   console.log(expandedItemId);

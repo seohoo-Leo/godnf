@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 
-const useItemInfo = create((set) => ({
+const useItemInfo = create((set,get) => ({
     category: "전체",
     job : "전체",
     weapon : "전체",
@@ -34,7 +34,12 @@ const useItemInfo = create((set) => ({
     setGrade : (grade) => set({grade}),
     setQuery : (query) => set({query}),
     setResults : (results) => set({results}),
-    setExpandedItemId : (expandedItemId) => set({expandedItemId})
+    setExpandedItemId : (itemId) => {
+        const current = get().expandedItemId;
+        set({
+            expandedItemId:current === itemId ? null : itemId
+        })
+    }
 
 
 }))
