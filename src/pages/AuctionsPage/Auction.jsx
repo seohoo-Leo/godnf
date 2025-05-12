@@ -33,7 +33,7 @@ function Auction() {
   // 아이템 클릭 시 상세 정보 표시
   const showAuction = (itemId) => {
     setExpandedItemId(prev => prev === itemId ? null : itemId);
-    console.log(itemId);
+    console.log(expandedItemId);
     
   };
 
