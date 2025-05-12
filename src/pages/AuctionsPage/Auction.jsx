@@ -37,6 +37,9 @@ function Auction() {
     
   };
 
+  console.log(expandedItemId);
+  
+
 
   return (
     <div className="auction">
