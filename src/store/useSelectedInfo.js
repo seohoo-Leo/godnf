@@ -7,7 +7,7 @@ const useSelectedInfo = create((set)=>({
     selectedName:"",
     setSelectedServer: (selectedServer) => set({selectedServer}),
     setSelectedServerId: (selectedServerId) =>set({selectedServerId}),
-    setSelectedName: (selectedName) => set(encodeURIComponent({selectedName}))
+    setSelectedName: (selectedName) =>  set({ selectedName: encodeURIComponent(selectedName) })
 
 }))
 
