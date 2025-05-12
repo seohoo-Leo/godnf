@@ -1,6 +1,7 @@
 import React from 'react'
-import useItemInfo from '../../store/useItemInfo';
 import { useItemName } from '../../../hooks/useItemName';
+import useItemInfo from '../../../store/useItemInfo';
+
 
 const Filter = () => {
 

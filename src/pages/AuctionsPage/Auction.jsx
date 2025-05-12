@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Row, Col} from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import "./Auction.style.css";
 import { useAuction } from '../../hooks/useAuction';
-import { useItemName } from '../../hooks/useItemName';
 import useItemInfo from '../../store/useItemInfo';
 import Filter from './components/filter';
 

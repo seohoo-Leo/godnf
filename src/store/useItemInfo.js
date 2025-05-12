@@ -34,7 +34,7 @@ const useItemInfo = create((set) => ({
     setGrade : (grade) => set({grade}),
     setQuery : (query) => set({query}),
     setResults : (results) => set({results}),
-    setExpandedItemId : (expandedItemId) => set({expandedItemId}),
+    setExpandedItemId : (expandedItemId) => set({expandedItemId})
 
 
 }))
